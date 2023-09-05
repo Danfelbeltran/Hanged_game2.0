@@ -1,0 +1,43 @@
+
+
+import random
+
+def jugar_ahorcado():
+    words = ["brenda", "nahla", "daniel", "marisol", "cafe", "terremoto"]
+    secret_word = random.choice(words)
+    attempts = 5
+    guessed_letters = []
+
+    while attempts > 0:
+        letter = input("Ingresa una letra: ").lower()
+
+        if letter in guessed_letters:
+            print("Ya adivinaste esa letra.")
+            continue
+
+        guessed_letters.append(letter)
+
+        if letter in secret_word:
+            print("Adivinaste una letra!")
+        else:
+            attempts -= 1
+            print(f"Letra incorrecta. Te quedan {attempts} intentos.")
+        
+        show_word = ""
+        for secret_letter in secret_word:
+            if secret_letter in guessed_letters:
+                show_word += secret_letter
+            else:
+                show_word += "_"
+
+        print(show_word)
+
+        if show_word == secret_word:
+            print("¡Ganaste!")
+            break
+    
+    if attempts == 0:
+        print(f"Perdiste. La palabra era: {secret_word}")
+
+if __name__ == "__main__":
+    jugar_ahorcado()
